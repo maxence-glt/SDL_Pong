@@ -3,7 +3,11 @@ project(Pong)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(Pong src/main.cpp)
+add_executable(Pong src/main.cpp
+                    src/sdlapp.cpp
+                    src/ltexture.cpp
+                    src/ball.cpp
+                    src/paddle.cpp)
 
 # Find SDL from vcpkg
 find_package(SDL2 CONFIG REQUIRED)
