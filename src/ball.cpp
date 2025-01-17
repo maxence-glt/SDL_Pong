@@ -1,5 +1,4 @@
 #include <SDL2/SDL.h>
-#include <iostream>
 
 #include "ball.hpp"
 #include "main.hpp"
@@ -33,8 +32,11 @@ void Ball::handleEvent(SDL_Event &e) {
 */
 
 void Ball::move(const SDL_Rect &left, const SDL_Rect &right) {
-    if(m_PosX < 0 || m_PosX + BALL_WIDTH >= gameVars.SCREEN_WIDTH)
-        reset();
+    if(m_PosX < 0)
+        m_crossLeft = true;
+
+    else if (m_PosX + BALL_WIDTH >= gameVars.SCREEN_WIDTH)
+        m_crossRight = true;
 
     if (m_PosY <= 0 || m_PosY >= gameVars.SCREEN_HEIGHT - BALL_HEIGHT)
         m_VelY *= -1;
@@ -54,9 +56,12 @@ void Ball::reset() {
     m_PosY = DEFAULT_Y;
     m_VelY = randomNum() % 5;
     m_VelX = randomNum() % 20;
+    m_crossLeft = false;
+    m_crossRight = false;
 
     if (m_VelY < 1) m_VelY = 1;
     if (m_VelX < 10) m_VelX = 10;
+    m_VelX *= (randomNum() % 2 == 0 ? -1 : 1);
 }
 
 // Random Number Generator

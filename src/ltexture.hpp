@@ -2,6 +2,7 @@
 #define LTEXTURE_HPP
 
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_ttf.h>
 #include <string>
 
 using RGB = Uint8;
@@ -9,10 +10,10 @@ using RGB = Uint8;
 // LTexture == Loaded Texture
 class LTexture {
 public:
-    LTexture(std::string filepath, SDL_Renderer *renderer);
+    LTexture(const std::string &filepath, SDL_Renderer *renderer);
     ~LTexture();
 
-    bool loadFromFile(std::string filepath, SDL_Renderer *renderer);
+    bool loadFromFile(const std::string &filepath, SDL_Renderer *renderer);
     void render(int x, int y, SDL_Renderer *renderer);
 
     constexpr void setRect(const int &w, const int &h) { 

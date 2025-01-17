@@ -5,7 +5,7 @@ Paddle::Paddle(int x, int y, bool right) {
     m_PosX = x;
     m_PosY = y;
 
-    if (!right) {
+    if (right) {
         keyUp = SDLK_w;
         keyDown = SDLK_s;
     } else {

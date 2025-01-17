@@ -26,6 +26,8 @@ public:
 
     constexpr int getLScore() const { return m_lscore; }
     constexpr int getRScore() const { return m_rscore; }
+    void incLScore() { m_lscore++; }
+    void incRScore() { m_rscore++; }
 private:
     SDL_Window *m_window;
     SDL_Renderer *m_renderer;
@@ -33,11 +35,8 @@ private:
     bool m_successInit;
     bool m_quit;
 
-    int m_width;
-    int m_height;
-
-    int m_lscore;
-    int m_rscore;
+    int m_width, m_height;
+    int m_lscore, m_rscore;
 
     std::function<void(void)> m_eventCallback;
     std::function<void(void)> m_renderCallback;

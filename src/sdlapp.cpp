@@ -33,6 +33,10 @@ SDLApp::SDLApp(std::string filepath, int width, int height): m_width(width), m_h
                     std::cout << "SDL_image could not initialize! SDL_Error: " << IMG_GetError() << std::endl;
                     m_successInit = false;
                 }
+                if( TTF_Init() == -1 ) {
+                        printf( "SDL_ttf could not initialize! SDL_ttf Error: %s\n", TTF_GetError() );
+                        m_successInit = false;
+                }
             }
         }
 
