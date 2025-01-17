@@ -1,11 +1,7 @@
 #ifndef PADDLE_HPP
 #define PADDLE_HPP
 
-#include "SDL2/SDL_keycode.h"
 #include <SDL2/SDL.h>
-
-extern const int SCREEN_WIDTH;
-extern const int SCREEN_HEIGHT;
 
 class Paddle {
 public:
@@ -16,17 +12,20 @@ public:
     static constexpr int getWidth() { return PADDLE_WIDTH; }
     static constexpr int getHeight() { return PADDLE_HEIGHT; }
 
-    SDL_Rect getRect() {
+    constexpr SDL_Rect getRect() {
         return {m_PosX, m_PosY, PADDLE_WIDTH, PADDLE_HEIGHT};
     }
 
     void handleEvent(SDL_Event &event);
-    void move();
-    void render();
+    constexpr void move();
+    constexpr void reset();
 private:
     static constexpr int PADDLE_WIDTH = 15;
     static constexpr int PADDLE_HEIGHT = 100;
     static constexpr int PADDLE_VEL = 10;
+
+    const int DEFAULT_X;
+    const int DEFAULT_Y;
 
     // Left paddle is 'w' and 's', right is 'up' and 'down'
     SDL_KeyCode keyUp;

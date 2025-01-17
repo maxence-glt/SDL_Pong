@@ -9,29 +9,7 @@ Ball::Ball(int x, int y): DEFAULT_X(x), DEFAULT_Y(y) {
     reset();
 }
 
-/*
-void Ball::handleEvent(SDL_Event &e) {
-    if (e.type == SDL_KEYDOWN && e.key.repeat == 0) {
-        switch (e.key.keysym.sym) {
-            case SDLK_UP: m_VelY -= BALL_VEL; break;
-            case SDLK_DOWN: m_VelY += BALL_VEL; break;
-            case SDLK_LEFT: m_VelX -= BALL_VEL; break;
-            case SDLK_RIGHT: m_VelX += BALL_VEL; break;
-        }
-    }
-
-    else if (e.type == SDL_KEYUP && e.key.repeat == 0) {
-        switch (e.key.keysym.sym) {
-            case SDLK_UP: m_VelY += BALL_VEL; break;
-            case SDLK_DOWN: m_VelY -= BALL_VEL; break;
-            case SDLK_LEFT: m_VelX += BALL_VEL; break;
-            case SDLK_RIGHT: m_VelX -= BALL_VEL; break;
-        }
-    }
-}
-*/
-
-void Ball::move(const SDL_Rect &left, const SDL_Rect &right) {
+constexpr void Ball::move(const SDL_Rect &left, const SDL_Rect &right) {
     if(m_PosX < 0)
         m_crossLeft = true;
 
