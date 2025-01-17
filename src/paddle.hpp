@@ -16,13 +16,17 @@ public:
     static constexpr int getWidth() { return PADDLE_WIDTH; }
     static constexpr int getHeight() { return PADDLE_HEIGHT; }
 
+    SDL_Rect getRect() {
+        return {m_PosX, m_PosY, PADDLE_WIDTH, PADDLE_HEIGHT};
+    }
+
     void handleEvent(SDL_Event &event);
     void move();
     void render();
 private:
     static constexpr int PADDLE_WIDTH = 15;
     static constexpr int PADDLE_HEIGHT = 100;
-    static constexpr int PADDLE_VEL = 30;
+    static constexpr int PADDLE_VEL = 10;
 
     // Left paddle is 'w' and 's', right is 'up' and 'down'
     SDL_KeyCode keyUp;

@@ -18,8 +18,6 @@ public:
     constexpr void setRect(const int &w, const int &h) { 
         m_width = w; m_height = h;
     }
-
-    const SDL_bool isColliding(const LTexture &obj) const;
 private:
     inline const SDL_Rect getRect() const { return m_rect; }
 

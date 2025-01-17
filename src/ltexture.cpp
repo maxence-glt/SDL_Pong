@@ -16,8 +16,8 @@ LTexture::~LTexture() {
 }
 
 bool LTexture::loadFromFile(std::string filepath, SDL_Renderer *renderer) {
-    SDL_Texture* newTexture = nullptr;
-    SDL_Surface* loadedSurface = IMG_Load(filepath.c_str());
+    SDL_Texture *newTexture = nullptr;
+    SDL_Surface *loadedSurface = IMG_Load(filepath.c_str());
 
     newTexture = SDL_CreateTextureFromSurface(renderer, loadedSurface);
     m_width = loadedSurface->w;
@@ -34,9 +34,3 @@ void LTexture::render(int x, int y, SDL_Renderer *renderer) {
 
     SDL_RenderCopy(renderer, m_texture, NULL, &renderQuad);
 }
-
-const SDL_bool LTexture::isColliding(const LTexture &obj) const {
-    const SDL_Rect temp = obj.getRect();
-    return SDL_HasIntersection(&m_rect, &temp);
-}
-

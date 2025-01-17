@@ -13,11 +13,11 @@ public:
     static constexpr int getHeight() { return BALL_HEIGHT; }
 
     // void handleEvent(SDL_Event &event);
-    void move();
+    void move(const SDL_Rect &left, const SDL_Rect &right);
     void reset();
 private:
-    static constexpr int BALL_WIDTH = 30;
-    static constexpr int BALL_HEIGHT = 30;
+    static constexpr int BALL_WIDTH = 20;
+    static constexpr int BALL_HEIGHT = 20;
     const int DEFAULT_X;
     const int DEFAULT_Y;
 
