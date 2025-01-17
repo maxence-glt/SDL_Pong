@@ -1,8 +1,10 @@
-#include "sdlapp.hpp"
 #include <SDL2/SDL_image.h>
 #include <iostream>
 
-SDLApp::SDLApp(std::string filepath, int width, int height): m_width(width), m_height(height), m_score(0) {
+#include "sdlapp.hpp"
+#include "ltexture.hpp"
+
+SDLApp::SDLApp(std::string filepath, int width, int height): m_width(width), m_height(height), m_lscore(0), m_rscore(0), m_quit(false) {
     m_successInit = true;
 
     if	(SDL_Init( SDL_INIT_VIDEO) < 0)	{
@@ -45,9 +47,26 @@ SDLApp::~SDLApp() {
     SDL_Quit();
 }
 
-void SDLApp::gameLoop() {
-    m_quit = false;
+void SDLApp::splashLoop(LTexture *splash) {
+    while (!m_quit) {
+        SDL_Event e;
+        SDL_SetRenderDrawColor(m_renderer, 0x00, 0x00, 0x00, 0xFF);
+        SDL_RenderClear(m_renderer);
+        splash->render(0, 0, m_renderer);
 
+        while (SDL_PollEvent(&e)) {
+            if (e.type == SDL_QUIT) {
+                m_quit = true;
+            } else if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_SPACE) {
+                return;
+            }
+        }
+
+        SDL_RenderPresent(m_renderer);
+    }
+}
+
+void SDLApp::gameLoop() {
     while (!m_quit) {
         m_eventCallback();
 
@@ -67,4 +86,3 @@ void SDLApp::setEventCallback(std::function<void(void)> func) {
 void SDLApp::setRenderCallback(std::function<void(void)> func) {
     m_renderCallback = func;
 }
-
